@@ -25,3 +25,9 @@ This project uses maven to build and package as an executable jar. You should be
 ```
 mvn package
 ```
+
+## Running the project
+With java installed, you can execute the jar from your operating system file explorer or by running
+```
+java -jar <path/to/jar>
+```
