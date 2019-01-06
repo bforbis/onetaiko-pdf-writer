@@ -31,3 +31,15 @@ With java installed, you can execute the jar from your operating system file exp
 ```
 java -jar <path/to/jar>
 ```
+
+## Common Issues
+
+### Libre Office
+
+##### Text entered into field is too high / too low
+Right click the form field and open the "Control" panel. Make sure the following are set appropriately:
+- "Text type" should be "Single-line"
+- "Vert. Allignment" should be set to Top/Bottom appropriately
+
+##### Text entered into field is too large / small
+Right click the form field and open the "Control" panel. From "Font", click on "..." for more options and set the font size appropriately
