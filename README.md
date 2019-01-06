@@ -43,3 +43,8 @@ Right click the form field and open the "Control" panel. Make sure the following
 
 ##### Text entered into field is too large / small
 Right click the form field and open the "Control" panel. From "Font", click on "..." for more options and set the font size appropriately
+
+##### Font rendering issues in Adobe Acrobat
+LibreOffice defaults to using the `LiberationSans` font-family for form fields, which is not installed by default on most systems.
+
+To get around this, right click each form field and make sure the font is set to `Times New Roman`
