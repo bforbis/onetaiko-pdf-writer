@@ -21,7 +21,7 @@ The registration PDF was built and made editable using [LibreOffice](https://www
 Finally, this pdf writer project will combine the CSV responses into the editable PDF and generate one filled PDF per row. This is done by using [Apache PDFBox](https://pdfbox.apache.org/) to cross-reference CSV response names with editable PDF field names.
 
 ## Building the project
-This project uses maven to build. You should be able to generate an executable jar with the following command:
+This project uses maven to build and package as an executable jar. You should be able to build it by running
 ```
-mvn build
+mvn package
 ```
