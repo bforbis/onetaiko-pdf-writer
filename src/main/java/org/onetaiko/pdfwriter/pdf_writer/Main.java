@@ -8,9 +8,9 @@ public class Main {
 	public static void main(String[] args) {
     	try {
     		// Set these variables to test
-    		File outputFolder = new File("");
-    		File csvFile = new File("");
-    		String url = "";
+    		File outputFolder = new File("/Users/bforbis/Desktop/out");
+    		File csvFile = new File("/Users/bforbis/Desktop/test.csv");
+//    		String url = "";
 			App app = new App(outputFolder, csvFile);
 			HashMap<String, ArrayList<String>> resultMap = app.process();
 			System.out.printf(

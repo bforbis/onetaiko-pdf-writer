@@ -2,9 +2,7 @@ package org.onetaiko.pdfwriter.pdf_writer;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -123,6 +121,7 @@ public class App {
 //		}
 	}
 	
+	@SuppressWarnings("unused")
 	private static void debugFiles() {
 		String[] dirPathList = {"."};
 		for (String dirPath: dirPathList) {
