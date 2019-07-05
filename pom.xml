@@ -11,6 +11,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <maven.compiler.source>6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>10</maven.compiler.release>
     <maven.compiler.source>1.10</maven.compiler.source>
@@ -44,16 +46,26 @@
   	<plugins>
   		<plugin>
   			<artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.1</version>
   			<configuration>
   				<archive>
   					<manifest>
-  						<mainClass>org.onetaiko.pdfwriter.pdf_writer.Main</mainClass>
+  						<mainClass>org.onetaiko.pdfwriter.pdf_writer.View</mainClass>
   					</manifest>
   				</archive>
   				<descriptorRefs>
   					<descriptorRef>jar-with-dependencies</descriptorRef>
   				</descriptorRefs>
   			</configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
   		</plugin>
   	</plugins>
   </build>

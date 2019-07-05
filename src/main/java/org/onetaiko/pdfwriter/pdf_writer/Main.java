@@ -13,14 +13,10 @@ public class Main {
 //    		String url = "";
 			App app = new App(outputFolder, csvFile);
 			HashMap<String, ArrayList<String>> resultMap = app.process();
-			System.out.printf(
-				"Success: %d Fail: %d\n",
-				resultMap.get("success").size(),
-				resultMap.get("fail").size()
-			);
+			System.out.printf("Success: %d Fail: %d\n", resultMap.get("success").size(), resultMap.get("fail").size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 }

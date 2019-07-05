@@ -38,3 +38,30 @@ This project uses maven to build. You should be able to generate an executable j
 3. Generate the jar from compiled code using `mvn assembly:single`
 
 This should generate a jar at `./target/pdf-writer-0.0.1-jar-with-dependencies.jar`. You can then rename and/or copy this to google drive for sharing with other people.
+This project uses maven to build and package as an executable jar. You should be able to build it by running
+```
+mvn package
+```
+
+## Running the project
+With java installed, you can execute the jar from your operating system file explorer or by running
+```
+java -jar <path/to/jar>
+```
+
+## Common Issues
+
+### Libre Office
+
+##### Text entered into field is too high / too low
+Right click the form field and open the "Control" panel. Make sure the following are set appropriately:
+- "Text type" should be "Single-line"
+- "Vert. Allignment" should be set to Top/Bottom appropriately
+
+##### Text entered into field is too large / small
+Right click the form field and open the "Control" panel. From "Font", click on "..." for more options and set the font size appropriately
+
+##### Font rendering issues in Adobe Acrobat
+LibreOffice defaults to using the `LiberationSans` font-family for form fields, which is not installed by default on most systems.
+
+To get around this, right click each form field and make sure the font is set to `Times New Roman`
