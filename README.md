@@ -31,13 +31,6 @@ All field mappings from CSV to PDF fields are in the FieldSetter.java file. If f
 The project can be run easily by running the `Main.java` file and updating the file variables to point to a source CSV and target output folder.
 
 ## Building the project
-This project uses maven to build. You should be able to generate an executable jar with the following commands:
-
-1. Install maven dependencies with `mvn install`
-2. Compile the project with `mvn compile`
-3. Generate the jar from compiled code using `mvn assembly:single`
-
-This should generate a jar at `./target/pdf-writer-0.0.1-jar-with-dependencies.jar`. You can then rename and/or copy this to google drive for sharing with other people.
 This project uses maven to build and package as an executable jar. You should be able to build it by running
 ```
 mvn package
