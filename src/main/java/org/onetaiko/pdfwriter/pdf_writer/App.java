@@ -28,13 +28,17 @@ public class App {
 		);
 	}
 
-	private final static String PDF_RESOURCE_NAME = "ClassRegistrationEditable.pdf";
+	// File names for the editable PDFs located in the project resource directory:
+	// ./src/main/resources/*.pdf
+	private final static String CLASS_REGISTRATION_PDF_FILE = "ClassRegistrationEditable.pdf";
+	private final static String WORKSHOP_REGISTRATION_PDF_FILE = "WorkshopRegistrationEditable.pdf";
 	
 	
 	List<CSVRecord> csvRecords;
 	File outputFolder;
 	
-	private byte[] sourcePDFBytes;
+	private byte[] sourceClassPDFBytes;
+	private byte[] sourceWorkshopPDFBytes;
 
 	// Constructors
 	public App (File outputFolder, File csvFile) throws Exception {
@@ -44,7 +48,7 @@ public class App {
 			throw new Exception(e);
 		}
 		validateOutputFolder(outputFolder);
-		validateSourcePDF();
+		loadSourcePDFs();
 	}
 	public App (File outputFolder, String csvUrl) throws Exception {
 		try {
@@ -53,7 +57,7 @@ public class App {
 			throw new Exception(e);
 		}
 		validateOutputFolder(outputFolder);
-		validateSourcePDF();
+		loadSourcePDFs();
 	}
 	
 	/**
@@ -71,7 +75,18 @@ public class App {
 			String outputPDFName = generatePDFNameFromRow(record);
 			try {
 				System.out.printf("Processing %s...\n", outputPDFName);
-				sourcePDF = PDDocument.load(this.sourcePDFBytes);
+				String registrationType = record.get("Class you are registering for");
+				if (registrationType.contains("Class")) {
+					sourcePDF = PDDocument.load(this.sourceClassPDFBytes);
+				}
+				else if (registrationType.contains("Workshop")) {
+					sourcePDF = PDDocument.load(this.sourceWorkshopPDFBytes);
+				}
+				else {
+					resultMap.get("fail").add(outputPDFName);
+					continue;
+				}
+				
 				FieldSetter.setFormFields(record, sourcePDF);
 				sourcePDF.save(this.outputFolder.getPath() + "/" + outputPDFName);
 				resultMap.get("success").add(outputPDFName);
@@ -101,24 +116,15 @@ public class App {
 		}
 	}
 
-	private void validateSourcePDF() throws Exception {
+	/**
+	 * Loads the PDFs from the resources directory into the module scoped variables
+	 * 
+	 * @throws IOException - Failure to load PDF
+	 */
+	private void loadSourcePDFs() throws IOException {
 		ClassLoader cl = this.getClass().getClassLoader();
-		sourcePDFBytes = IOUtils.resourceToByteArray(PDF_RESOURCE_NAME, cl);
-		//InputStream stream = cl.getResourceAsStream(PDF_RESOURCE_NAME);
-		//sourcePDFStream = stream;
-		
-		//String sourcePDFByteArray = IOUtils.resourceToByteArray(PDF_RESOURCE_NAME);
-//
-//		URL resource = this.getClass().getClassLoader().getResource(PDF_RESOURCE_NAME);
-//		File file = new File(resource.getFile());
-//		System.out.println("File to load: " + file.getPath());
-//		if (file.exists()) {
-//			this.sourcePDFFile = file;
-//		} else {
-//			System.err.println(file.getAbsolutePath());
-//			debugFiles();
-//			throw new Exception("Could not load original PDF");
-//		}
+		sourceClassPDFBytes = IOUtils.resourceToByteArray(CLASS_REGISTRATION_PDF_FILE, cl);
+		sourceWorkshopPDFBytes = IOUtils.resourceToByteArray(WORKSHOP_REGISTRATION_PDF_FILE, cl);
 	}
 	
 	@SuppressWarnings("unused")
